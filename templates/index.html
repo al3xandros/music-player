@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ BASE_URL }}static/css/style.css">
+    <script src="{{ BASE_URL }}static/js/socket.io.min.js"></script>
+    <title>Music Player</title>
+</head>
+<body>
+    <div class="v-c">
+        <!--https://en.wikipedia.org/wiki/Media_control_symbols-->
+        <div class="w90 v-c">
+            <button class="btn" id="prev-song">|◀</button>
+            <button class="btn" id="time-10s">◀◀</button>
+            <button class="btn" id="play-btn">&nbsp;▶&nbsp;</button>
+            <button class="btn" id="time+10s">▶▶</button>
+            <button class="btn" id="next-song">▶|</button>
+
+            <span id="timestamp" class="btn">&nbsp;- -:- -/- -:- -&nbsp;</span>
+            <input class="btn" type="number" id="volume" placeholder="vol" value="100">
+            <button class="btn" id="mute">mute</button>
+        </div>
+        <div class="w90 v-c">
+            <button class="btn" id="loop">loop</button>
+            <select class="btn" id="queue">
+                <option value="single">sing</option>
+                <option value="linear">A->B</option>
+                <option value="shuf">shuf</option>
+            </select>
+            <select class="btn" id="speed">
+                <option value="0.2">0.2</option>
+                <option value="0.4">0.4</option>
+                <option value="0.6">0.6</option>
+                <option value="0.8">0.8</option>
+                <option value="1.0" selected>1.0</option>
+                <option value="1.2">1.2</option>
+                <option value="1.4">1.4</option>
+                <option value="1.6">1.6</option>
+                <option value="1.8">1.8</option>
+                <option value="2.0">2.0</option>
+            </select>
+            <button class="btn" id="fullscreen">fullscr</button>
+            <button class="btn" id="detach">detach</button>
+            <button class="btn" id="remote">remote</button>
+        </div>
+        <!--        <div id="current-song" class="show v-c w90">-->
+        <!--            asd asd asd asd asd asd asd qweasdxczxc qweasdxczxc qweasdxczxc-->
+<!--            qweasdxczxc qweasdxczxc qweasdxczxc-->
+<!--        </div>-->
+        <div style='width: 90%;' class="v-c">
+            <input type="range" max="300" min="0" value="0" id="timebar" style="height:30px;width: 100%;">
+        </div>
+    </div>
+    <div id="songlist-container" class="v-c">
+        <ol id="songlist"></ol>
+    </div>
+    <audio id="audio"></audio>
+</body>
+<script src="{{ BASE_URL }}static/js/index.js"></script>
+<script src="{{ BASE_URL }}static/js/server_conn.js"></script>
+</html>

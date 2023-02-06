@@ -1,0 +1,21 @@
+[server]
+host = "0.0.0.0"
+port = 5000
+debug = false
+token = "changeme!"
+# ensure last slash and full or relative path, not with env variables
+music_folder = "/home/user/Music/"
+# can be just a / and ensure last slash
+base_url = '/'
+
+
+[keyboard]
+pause = "Space"
+next_song = "n"
+prev_song = "p"
+volumn_up = "Arrow_Up"
+volumn_down = "Arrow_Down"
+mute = "m"
+speed_up = ">"
+speed_down = "<"
+change_mode = "l"

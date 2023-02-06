@@ -1,0 +1,37 @@
+.show {
+    border: solid red 1px;
+}
+.v-c{
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 700px;
+    width:100%;
+}
+#songlist-container{
+    height: 67vh;
+    overflow-y: auto;
+}
+#volume{
+    width: 45px;
+}
+.w90 {
+    width: fit-content;
+    max-width: 90%;
+}
+#current-song{
+    text-align: center;
+}
+.song{
+    margin-bottom: 10px;
+    width: 90%;
+    cursor: pointer;
+    background-color: #87c1ff;
+    padding: 3px;
+}
+.btn{
+    border: darkblue solid 2px;
+    border-radius: 4px;
+    font-size: 13px;
+    background-color: white;
+    margin-bottom: 3px;
+}
