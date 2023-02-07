@@ -54,3 +54,7 @@ sock.on("server", (data) => {
     song_names = data.song_names;
     updateSongList();
 })
+
+sock.on("keyboard", (data) => {
+    keyboard = data;
+})
