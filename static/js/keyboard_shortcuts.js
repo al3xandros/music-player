@@ -17,6 +17,12 @@ let keyboard = {
 }
 
 document.body.onkeydown = (event) => {
+    if (event.key in ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]) {
+        audio.currentTime = (parseInt(event.key) / 10) * audio.duration;
+        updateToTimeBar();
+        send_state();
+        return;
+    }
     switch (event.key) {
         case keyboard.togglePlay:
             togglePlay();
@@ -72,8 +78,5 @@ document.body.onkeydown = (event) => {
         case keyboard.toggleRemote:
             toggleRemote();
             break;
-    }
-    if (event.key in ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]) {
-        audio.currentTime = (parseInt(event.key) / 10) * audio.duration;
     }
 }

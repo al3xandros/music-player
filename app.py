@@ -1,11 +1,10 @@
 from flask import *
 from flask_socketio import SocketIO, emit
 import os
-import random
 import tomllib
 from urllib.parse import quote
 
-with open("settings.toml", "rb") as f:
+with open("my_settings.toml", "rb") as f:
     settings = tomllib.load(f)
 HOST = settings['server']['host']
 PORT = settings['server']['port']
@@ -13,6 +12,7 @@ DEBUG = settings['server']['debug']
 TOKEN = settings['server']['token']
 MUSIC_FOLDER = settings['server']['music_folder']
 BASE_URL = settings['server']['base_url']
+INC_SELF = False
 
 settings['keyboard'] = {
     "togglePlay": " ",
@@ -33,10 +33,11 @@ settings['keyboard'] = {
 } | settings['keyboard']
 
 
-def update_music_list(shuf=False):
+def update_music_list(seed=None):
     songs = list(sorted(os.listdir(MUSIC_FOLDER)))
-    if shuf:
+    if seed:
         import random
+        random.seed(seed)
         random.shuffle(songs)
     return list(songs)
 
@@ -73,18 +74,22 @@ def index():
 
 @sock.on("audio")
 def handle_audio(data):
-    emit("audio", data, broadcast=not data['detach'], include_self=False)
+    emit("audio", data, broadcast=not data['detach'], include_self=INC_SELF)
 
-    if data['queue'] == "shuf":
-        l = update_music_list(True)
-        random.seed(data['seed'])
-        random.shuffle(l)
-        print(data)
+    if data['queue'] == "shuf" and data['new_seed']:
+        l = update_music_list(data['seed'])
         sock.emit("server", {
             "music_url": BASE_URL + "music/",
             'song_urls': list(map(quote, l)),
             'song_names': list(map(strip_ext, l))
-        }, broadcast=not data['detach'], include_self=False)
+        }, broadcast=not data['detach'], include_self=True)
+    if data['queue'] == "linear" and data['new_seed']:
+        l = update_music_list()
+        sock.emit("server", {
+            "music_url": BASE_URL + "music/",
+            'song_urls': list(map(quote, l)),
+            'song_names': list(map(strip_ext, l))
+        }, broadcast=not data['detach'], include_self=True)
 
 
 @sock.on("connect")

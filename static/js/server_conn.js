@@ -11,7 +11,7 @@ let state = {
     detach:is_detach,
 }
 
-function send_state(st){
+function send_state(){
     state = {
         paused:audio.paused,
         volume:audio.volume,
@@ -22,8 +22,10 @@ function send_state(st){
         song_idx:idx,
         queue:queue.value,
         detach:is_detach,
-        seed:seed
+        seed:seed,
+        new_seed:new_seed,
     }
+    new_seed = false;
     sock.emit("audio", state);
 }
 
@@ -44,9 +46,9 @@ function set_state(state){
     }
     is_loop = state.loop;
     audio.playbackRate = state.speed;
-    audio.currentTime = state.currentTime
+    audio.currentTime = state.currentTime;
     queue.value = state.queue;
-    updateUI()
+    updateUI();
 }
 sock.on("server", (data) => {
     music_url = data.music_url;

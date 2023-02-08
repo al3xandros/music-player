@@ -22,6 +22,7 @@ let audio = document.getElementById("audio");
 
 
 let music_url = '/music/';
+let new_seed = false;
 
 let song_urls = [];
 let song_names = [];
@@ -67,7 +68,7 @@ function updateFromTimeBar(){
 speed.oninput = changeSpeed;
 function changeSpeed(){
     audio.playbackRate = speed.value;
-    if (speed.value == "1.0"){
+    if (speed.value === "1.0"){
         colorToWhite(speed);
     } else {
         colorToGreen(speed);
@@ -164,13 +165,17 @@ function toggleRemote(){
 let seed = (new Date()).getTime();
 queue.oninput = changeQueue;
 function changeQueue(){
-    if (queue.value == "single") {
+    if (queue.value === "single") {
         colorToWhite(queue);
     } else {
         colorToGreen(queue);
     }
     if (queue.value === "shuf"){
         seed = (new Date()).getTime();
+        new_seed = true;
+    }
+    if (queue.value === "linear"){
+        new_seed = true;
     }
     send_state();
 }
@@ -263,7 +268,8 @@ function updateUI(){
     updateToTimeBar();
 
     // speed
-    if (speed.value == "1.0"){
+    speed.value = (audio.playbackRate === 1) ?"1.0" : audio.playbackRate;
+    if (speed.value === "1.0"){
         colorToWhite(speed);
     } else {
         colorToGreen(speed);
@@ -278,11 +284,21 @@ function updateUI(){
         title.innerHTML = song_names[idx];
     }
 
+    // volume
+    volume.value = (audio.volume) * 100;
+
     // mute
     if (is_muted) {
         colorToGreen(mute);
     } else {
         colorToWhite(mute);
+    }
+
+    // Queue
+    if (queue.value === "single") {
+        colorToWhite(queue);
+    } else {
+        colorToGreen(queue);
     }
 
     // loop
