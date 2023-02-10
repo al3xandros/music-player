@@ -12,6 +12,9 @@ let state = {
 }
 
 function send_state(){
+    if (is_detach){
+        return;
+    }
     state = {
         paused:audio.paused,
         volume:audio.volume,
@@ -31,6 +34,9 @@ function send_state(){
 
 sock.on("audio", set_state)
 function set_state(state){
+    if (is_detach){
+        return;
+    }
     if (idx !== state.song_idx) {
         updateAudioSrc(state.song_idx);
     }
