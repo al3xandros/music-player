@@ -13,24 +13,24 @@
     <div class="v-c" id="main">
         <!--https://en.wikipedia.org/wiki/Media_control_symbols-->
         <div class="w90 v-c">
-            <button class="btn" id="prev-song">|◀</button>
-            <button class="btn" id="time-10s">◀◀</button>
-            <button class="btn" id="play-btn">&nbsp;▶&nbsp;</button>
-            <button class="btn" id="time+10s">▶▶</button>
-            <button class="btn" id="next-song">▶|</button>
+            <button class="btn" id="prev-song" title="Previous Song">|◀</button>
+            <button class="btn" id="time-10s" title="Back 10s">◀◀</button>
+            <button class="btn" id="play-btn" title="Play/Pause">&nbsp;▶&nbsp;</button>
+            <button class="btn" id="time+10s" title="Forward 10s">▶▶</button>
+            <button class="btn" id="next-song" title="Next Song">▶|</button>
 
             <span id="timestamp" class="btn">&nbsp;- -:- -/- -:- -&nbsp;</span>
-            <input class="btn" type="number" id="volume" placeholder="vol" value="100">
-            <button class="btn" id="mute">mute</button>
+            <input class="btn" type="number" id="volume" placeholder="vol" value="100" title="Set Volume">
+            <button class="btn" id="mute" title="Mute Playback">mute</button>
         </div>
         <div class="w90 v-c">
-            <button class="btn" id="loop">loop</button>
-            <select class="btn" id="queue">
+            <button class="btn" id="loop" title="Loop Queue">loop</button>
+            <select class="btn" id="queue" title="Queue Mode">
                 <option value="single">sing</option>
                 <option value="linear">A->B</option>
-                <option value="shuf">shuf</option>
+                <option value="shuf" title="Shuffle Songs">shuf</option>
             </select>
-            <select class="btn" id="speed">
+            <select class="btn" id="speed" title="Playback Speed">
                 <option value="0.2">0.2</option>
                 <option value="0.4">0.4</option>
                 <option value="0.6">0.6</option>
@@ -42,15 +42,15 @@
                 <option value="1.8">1.8</option>
                 <option value="2.0">2.0</option>
             </select>
-            <button class="btn" id="fullscreen">fullscr</button>
-            <button class="btn" id="detach">detach</button>
-            <button class="btn" id="remote">remote</button>
+            <button class="btn" id="fullscreen" title="Toggle Fullscreen">fullscr</button>
+            <button class="btn" id="detach" title="Detached Mode">detach</button>
+            <button class="btn" id="remote" title="Remote Mode">remote</button>
         </div>
         <!--        <div id="current-song" class="show v-c w90">-->
         <!--            asd asd asd asd asd asd asd qweasdxczxc qweasdxczxc qweasdxczxc-->
 <!--            qweasdxczxc qweasdxczxc qweasdxczxc-->
 <!--        </div>-->
-        <div style='width: 90%;' class="v-c">
+        <div style='width: 90%;' class="v-c" title="Song Progress">
             <input type="range" max="300" min="0" value="0" id="timebar" style="height:30px;width: 100%;">
         </div>
     </div>
