@@ -34,7 +34,11 @@ settings['keyboard'] = {
 
 
 def update_music_list(seed=None):
-    songs = list(sorted(os.listdir(MUSIC_FOLDER)))
+    ext = [".mp3", ".m4a", ".aif", ".wav",
+           ".mid", ".wow", ".ogg", ".wma",
+           ".flac", ".wave"
+           ]
+    songs = [i for i in sorted(os.listdir(MUSIC_FOLDER)) if any([i.endswith(s) for s in ext])]
     if seed:
         import random
         random.seed(seed)
